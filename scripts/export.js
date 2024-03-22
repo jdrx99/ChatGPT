@@ -208,12 +208,15 @@ async function exportInit() {
 
   function btnInit() {
     const intervalId = setInterval(function () {
-      const navActionArea = document.querySelector('nav .border-t > div');
+      // const navActionArea = document.querySelector('nav .border-t > div');
+      const navActionArea = document.querySelector('nav .flex.flex-col.pt-2');
+
       const addArea = document.querySelector('#chatgpt-nav-action-area');
       if (!navActionArea || addArea) return;
       const cloneNode = document.createElement('div');
       cloneNode.id = 'chatgpt-nav-action-area';
       cloneNode.classList = `${navActionArea.className} border-b border-white/20 mb-2 pb-2`;
+      cloneNode.style.flexDirection = 'row'; // Override flex-direction
       cloneNode.appendChild(addBtn('png'));
       cloneNode.appendChild(addBtn('pdf'));
       cloneNode.appendChild(addBtn('md'));
@@ -230,7 +233,7 @@ async function exportInit() {
           timeout = setTimeout(() => {
             func.apply(context, args);
           }, wait);
-        };
+        } ;
       }
       const target = document.querySelector('nav');
       const debouncedFunction = debounce(function () {
